@@ -1,0 +1,171 @@
+<h5 class="card-title text-center pt-1">Detalle de Ticket</h5>
+
+
+
+<%# <h6 class="card-subtitle mb-2 text-muted">user1</h6> %>
+<div class="container">
+ <% if @ticket2.state%>
+      <span class="card-title"><strong>Status : </strong><%= @ticket2.state %></span> -----
+      <span class="card-title text-white"><strong>Modificado : </strong><%= @ticket2.updated_at.strftime("%d/%m/%Y  %H:%M") %></span>
+<% end %>
+
+    <div class="row">
+        <div class="list-group">
+        <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
+            <div class="d-flex w-100 justify-content-between">
+            <hp class="mb-0"><strong>Codigo-Ticket:</strong> <%= @ticket2.pais %>-<%= @ticket2.ciudad %>-<%= @ticket2.ubicacion %>-<%= @ticket2.id %></hp>
+            <small class="text-muted"><%= @ticket2.pais %>-<%= @ticket2.ciudad %>-<%= @ticket2.ubicacion %>-<%= @ticket2.id %></small>
+            </div>
+            <p class="mb-0"><strong>1821: </strong> new123</p>
+            <small><strong>Fecha Creacion: </strong> <%= @ticket2.created_at.strftime("%d/%m/%Y  %H:%M") %></small>
+            <p class="mb-0"><strong>Telefono: </strong> <%= @ticket2.telefono %></p>
+            <small><strong>Estado-ticket: </strong>
+                <% if @ticket2.state =='start'%>  
+                <span class="status-ticket"><%= @ticket2.state %></span></small>
+                <% end %> 
+                <% if @ticket2.state == 'assign_agent'%>
+                    <span class="status-assign_agent"><%= @ticket2.state %></span></small>            
+                <% end %>
+                <% if @ticket2.state == 'in_progress'%>    
+                    <span class="status-in_progress"><%= @ticket2.state %></span></small> 
+                <% end %>
+                <% if @ticket2.state == 'solved'%>        
+                    <span class="status-solved"><%= @ticket2.state %></span></small>     
+                <% end %>
+                <% if @ticket2.state == 'close'%>        
+                    <span class="status-close"><%= @ticket2.state %></span></small>      
+                <% end %>
+            
+            <p class="mb-0"><strong>Usuario: </strong> <%= @ticket2.nombre_usuario %></p>
+            <p class="mb-0"><strong>Email: </strong> <%= @ticket2.email_cliente %></p>
+            <small><strong>Asunto: </strong> <%= @ticket2.asunto %></small><br>
+            <small><strong>Agente Asignado: </strong> <%= @ticket2.editors.distinct.pluck(:email) %></small><br>
+
+            <h5 class="mb-0"><strong>Mensajes:</strong></h5>
+            <p class="mb-0"><strong><%= @ticket2.nombre_usuario %>: </strong><i><%= @ticket2.mensaje %></i></p>
+            <small><strong>Agente: </strong><%= @ticket2.solucion %></small><br>
+         
+            
+        </a>
+      <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+            <%=button_to 'delete', @ticket2, method: :delete, data: {confirm: "Deseas eliminar este ticket?", disable_with: "Processing..."}, class: 'btn btn-outline-danger' %>
+            <%=link_to 'Edit', {:action => :edit2, :id => @ticket2.id}, html_options = {class: 'btn btn-outline-info btn-edit'} %>
+        </div>
+        </div>
+    </div>
+</div>
+
+
+    <div class="container">
+        <div class="row">
+           <h3 class="card-title text-center">Seguimiento del ticket</h3>
+            <div class="row track2">
+                <div class="card-group ">
+
+                    <% if @ticket2.state =='start'%>  
+                            <div class="card text-dark text-center draft mb-3 hvr-grow" style="max-width: 18rem;">
+                            <div class="card-header header-txt text-white"><b>1</b></div>
+                    <% end %> 
+                        <% if @ticket2.state != 'start'%>            
+                            <div class="card text-dark text-center bg-secondary mb-3" style="max-width: 18rem;">
+                            <div class="card-header">1</div>
+                    <% end %>
+                        <%# <div class="card-header">1</div> %>
+                            <div class="card-body">
+                                <h5 class="card-title">Ticket Iniciado</h5>
+                                <% if @ticket2.state == 'start'%>
+                                    <p class="card-text text-white"><%= @ticket2.state %></p>
+                                    <a href="#" class="hvr-icon-wobble-horizontal">
+                                        <i class="fa fa-arrow-right hvr-icon"></i>
+                                    </a>
+                                <% end%>
+                            </div>
+                        </div>
+                    
+                        <%# <div class="card text-dark text-center bg-secondary mb-3" style="max-width: 18rem;"> %>
+                    <% if @ticket2.state =='assign_agent'%> 
+                        <div class="card text-dark text-center assign_agent mb-3 hvr-grow" style="max-width: 18rem;">
+                        <div class="card-header header-txt text-white"><b>2</b></div>
+                        
+                    <% end %>
+                    <% if @ticket2.state !='assign_agent'%> 
+                        <div class="card text-dark text-center bg-secondary mb-3" style="max-width: 18rem;">
+                        <div class="card-header">2</div>
+                    <% end %>
+                            <div class="card-body">
+                                <h5 class="card-title">Asignando Agente</h5>
+                                <% if @ticket2.state =='assign_agent'%> 
+                                    <p class="card-text text-white"><%= @ticket2.state %></p>
+                                    <a href="#" class="hvr-icon-wobble-horizontal">
+                                        <i class="fa fa-arrow-right hvr-icon"></i>
+                                    </a>
+                                    <span class="card-text text-white"> Agente: <%= @ticket2.editors.distinct.pluck(:email) %> </span>
+                                <% end %>
+                            </div>
+                        </div>
+
+
+                    <% if @ticket2.state =='in_progress'%> 
+                        <div class="card text-dark text-center in_progress mb-3 hvr-grow" style="max-width: 18rem;">
+                        <div class="card-header header-txt text-white"><b>3</b></div>
+                    <% end %>
+                    <% if @ticket2.state !='in_progress'%> 
+                        <div class="card text-dark text-center bg-secondary mb-3" style="max-width: 18rem;">
+                        <div class="card-header">3</div>
+                    <% end %>
+                            <div class="card-body">
+                                <h5 class="card-title">En Progreso</h5>
+                                <% if @ticket2.state =='in_progress'%> 
+                                    <p class="card-text text-white"><%= @ticket2.state %></p>
+                                    <a href="#" class="hvr-icon-wobble-horizontal">
+                                        <i class="fa fa-arrow-right hvr-icon"></i>
+                                    </a>
+                                    <span class="card-text text-white"> Agente: <%= @ticket2.editors.distinct.pluck(:email) %> </span>
+                                <% end %>
+                            </div>
+                        </div>
+
+                    <% if @ticket2.state =='solved'%> 
+                        <div class="card text-dark text-center solved mb-3 hvr-grow" style="max-width: 18rem;">
+                        <div class="card-header header-txt text-white"><b>4</b></div>
+                    <% end %>
+                    <% if @ticket2.state !='solved'%> 
+                        <div class="card text-dark text-center bg-secondary mb-3" style="max-width: 18rem;">
+                        <div class="card-header">4</div>
+                    <% end %>
+                            <div class="card-body">
+                                <h5 class="card-title">Solucionado</h5>
+                                <% if @ticket2.state =='solved'%> 
+                                    <p class="card-text text-white"><%= @ticket2.state %></p>
+                                    <a href="#" class="hvr-icon-wobble-horizontal">
+                                        <i class="fa fa-arrow-right hvr-icon"></i>
+                                    </a>
+                                    <span class="card-text text-white"> Agente: <%= @ticket2.editors.distinct.pluck(:email) %> </span>
+                                <% end %>
+                            </div>
+                        </div>
+
+                    <% if @ticket2.state =='close'%> 
+                        <div class="card text-dark text-center close mb-3 hvr-grow" style="max-width: 18rem;">
+                        <div class="card-header header-txt text-white"><b>5</b></div>
+                    <% end %>
+                    <% if @ticket2.state !='close'%> 
+                        <div class="card text-dark text-center bg-secondary mb-3" style="max-width: 18rem;">
+                        <div class="card-header">5</div>
+                    <% end %>
+                        <div class="card-body">
+                            <h5 class="card-title">Cerrado</h5>
+                            <% if @ticket2.state =='close'%> 
+                                <p class="card-text text-white"><%= @ticket2.state %></p>
+                                <a href="#" class="hvr-icon-wobble-horizontal">
+                                    <i class="fa fa-arrow-right hvr-icon"></i>
+                                </a>
+                                <span class="card-text text-white"> Agente: <%= @ticket2.editors.distinct.pluck(:email) %> </span>
+                            <% end %>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+
+

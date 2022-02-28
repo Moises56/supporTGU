@@ -1,0 +1,51 @@
+<nav class="navbar navbar-expand-lg navbar-light bgnav">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">
+    <%= image_tag("logos/labitcoincera_blanco2x.png", class: "header-logo-image img-logo") %>
+      <%# <img class="header-logo-image img-logo" src="<%= asset_pack_path 'media/images/labitcoincera_blanco2x.png'" alt="Logo"> %>
+    </a>
+    <button class="navbar-toggler ml-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        
+        <li class="nav-item">
+        <%=link_to 'Inicio', root_path, class: "nav-link nav-deco text-white"%>
+        </li>
+     
+        <li class="nav-item">
+            <%=link_to 'Obtener un ticket', new_tickets_path, class: "nav-link nav-deco text-white"%>
+        </li>
+
+         <% if current_user && current_user.has_role?(:admin)%>
+        <%# <% if current_user && current_user.admin %>
+        <%# <!--<% if current_user && current_user.has_role? :admin  %>
+           <%# <li class="nav-item"> %>
+            <%# <%=link_to 'Tickets', tickets_path, class: "nav-link nav-deco text-white"%>
+          <%# </li> %>
+
+          <li class="nav-item">
+              <%=link_to 'Admin', admin_path, class: "nav-link nav-deco text-white"%>
+          </li>
+        <% end %>
+        
+        <% if user_signed_in? %>
+         <%# <%= current_user.has_role? :admin %>
+          <%# <%= current_user.roles.pluck(:name)  %>
+        <li class="nav-item">
+            <%=button_to 'Cerrar Sesion', destroy_user_session_path, method: :delete, class: "btn-close2 nav-link nav-deco text-white"%>
+        </li>
+        <% else %>
+        <li class="nav-item">
+        <%=link_to 'Iniciar Session', new_user_session_path, class: "nav-link nav-deco text-white"%>
+        </li>
+        <li class="nav-item">
+        <%=link_to 'Registrate', new_user_registration_path, class: "nav-link nav-deco text-white"%>
+        </li>
+        <% end %>
+
+      </ul>
+    </div>
+  </div>
+</nav>

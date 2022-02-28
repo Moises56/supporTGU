@@ -1,0 +1,6 @@
+<p>¡Bienvenid@ <%= @email %>!</p>
+
+<p>LABITCOINERA necesita confirmar que tu dirección de correo electrónico es válida. Por favor</p>
+<p>Haz clic en el siguiente enlace para confirmar que has recibido este correo y activar tu cuenta.:</p>
+
+<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>

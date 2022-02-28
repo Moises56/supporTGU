@@ -1,0 +1,52 @@
+
+<tbody style="background: white;">
+</tr>
+
+    <th scope="row"><%= ticket.pais %>-<%= ticket.ciudad %>-<%= ticket.ubicacion %>-<%= ticket.id %></th>
+    <td>new123</td>
+    <td><%= ticket.created_at.strftime("%d/%m/%Y  %H:%M") %></td>
+    <td><%= ticket.telefono %></td>
+    <%# <td><%= ticket.estado_ticket %>
+     <% if ticket.state =='start'%>  
+        <td><div class="status-ticket"><%= ticket.state %></div></td>
+    <% end %> 
+    <% if ticket.state == 'assign_agent'%>            
+        <td><div class="status-assign_agent"><%= ticket.state %></div></td>
+    <% end %>
+    <% if ticket.state == 'in_progress'%>            
+        <td><div class="status-in_progress"><%= ticket.state %></div></td>
+    <% end %>
+    <% if ticket.state == 'solved'%>            
+        <td><div class="status-solved"><%= ticket.state %></div></td>
+    <% end %>
+    <% if ticket.state == 'close'%>            
+        <td><div class="status-close"><%= ticket.state %></div></td>
+    <% end %>
+    <td><%= ticket.nombre_usuario %></td>
+    <td><%= ticket.email_cliente %></td>
+  <!--  <td><%= ticket.departamento %></td> -->
+    <td><%= ticket.asunto %></td>
+    <td><%= ticket.mensaje %></td>
+    <td><%= ticket.solucion %></td>
+    <%# <td><%= ticket.users.distinct.pluck(:email)</td> %>
+    <td><%= ticket.creators.distinct.pluck(:email) %></td>
+    <td><%= ticket.editors.distinct.pluck(:email) %></td>
+    
+    <td>
+    <%# <i class="fas fa-edit"> </i>  %>
+            
+        <%=link_to 'Edit', {:action => :edit, :id => ticket.id}, html_options = {class: 'btn btn-outline-info btn-edit  remote: true'}%>
+        <%# <td><%= link_to 'Destroy', ticket, method: :delete, data: { confirm: 'Are you sure?' } </td> %>
+        <%= button_to('Destroy', ticket, method: "delete", remote: true, data: { confirm: 'Are you sure?', disable_with: 'loading...' }, class: 'btn btn btn-outline-danger btn-xs') %>
+        <%# <%=button_to 'Delete', ticket, method: :delete, data: {confirm: "Deseas eliminar este ticket?", disable_with: "Processing..."}, class: 'btn btn btn-outline-danger btn-xs' %> 
+    </td>
+</tr>
+
+<%# <h5 class="card-title"><strong>Status : </strong> <%= ticket.state %></h5>
+
+   
+
+
+
+
+         

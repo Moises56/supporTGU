@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="abs-center ">
+    <div class="border mt-5 form">
+    <h2 class="title text-center pt-4 pb-3"><b>Iniciar sesion</b></h2>
+       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="field">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true, required: true, :placeholder => 'Escribe tu Correo', class: 'form-control', autocomplete: "email" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password %><br />
+        <%= f.password_field :password, required: true, :placeholder => 'Escribe tu Contraseña', class: 'form-control', autocomplete: "current-password" %>
+      </div>
+
+      <% if devise_mapping.rememberable? %>
+        <div class="field">
+          <%= f.check_box :remember_me %>
+          <%= f.label :remember_me %>
+        </div>
+      <% end %>
+
+      <div class="actions">
+        <%= f.submit "Log in", class: 'btn-login' %>
+      </div>
+    <% end %>
+
+        <div class="text-center">
+        <%= render "devise/shared/links" %>
+        </div>
+    </div>
+    </div>
+  </div>
+</div>

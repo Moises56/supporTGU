@@ -1,0 +1,69 @@
+<!--<div class="container pt-4">
+  <div class="row categorias-class" id="categorias">
+    <% @user.each do |user| %>
+      <div class="col-12 col-md-4 col-6 col-sm-8 mt-1">
+        <div class="card card-color">
+            <span>ID: <%= user.id%></span>
+            <div class="card-body">
+              <h5 class="card-title title-email"><%= user.email%></h5>
+              <h6 class="card-title title-email"><%= user.roles.pluck(:name)%></h6>
+              <p class="card-text">Fecha: <%= user.created_at%></p>
+            </div>
+        </div>
+         <td>
+        </td>
+      </div> 
+      <%# <%=button_to 'delete', @user, method: :delete2, data: {confirm: "Deseas eliminar este ticket?", disable_with: "Processing..."}, class: 'btn btn btn-outline-danger btn-xs' %> 
+    <% end %>
+    
+
+  
+  </div>
+</div>
+-->
+
+<div class="container-fluid">
+   <div class="col-2 col-md-6 col-12">
+        <table class="table table-hover table-striped">
+        <tr>
+            <thead class="text-center">
+                <th scope="col"><div class="size"> id User</div></th>
+                <th scope="col"><div class="size"> Email</div></th>
+                <th scope="col"><div class="size"> FECHA</div></th>
+                <th scope="col"><div class="size"> ROLE</div></th>
+                <th scope="col"><div class="size"> Tickets</div></th>
+                <th scope="col"><div class="size"> Creador</div></th>
+
+                <th scope="col"><div class="size"> edit</div></th>
+                <th scope="col"><div class="size"> Actions</div></th>
+            </thead>
+            <tbody class="text-center" style="background: white; padding-left: 20px;">
+            <% @user.each do |user| %>
+              </tr>
+                  <th scope="row" style="padding-left: 20px;"><%= user.id%></th>
+                  <td><%= user.email%></td>
+                  <td><%= user.created_at.strftime("%d/%m/%Y  %H:%M") %></td>
+                  <td><%= user.roles.pluck(:name)%></td>
+                  <%# <td><%= ticket.estado_ticket %>
+                
+                  <%# <td><%= ticket.users.distinct.pluck(:email)</td> %>
+                  <td><%= user.tickets.pluck(:id)%></td>
+                  <td><%= user.creator_tickets.pluck(:id)%></td>
+                  <td><%= user.editor_tickets.pluck(:id)%></td>
+                  
+                  <td>
+                  <%= link_to 'Edit roles', edit_user_path(user), class: 'btn btn-outline-info me-0' %>
+                  </td>
+              </tr>
+              <% end %>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+
+
+
+

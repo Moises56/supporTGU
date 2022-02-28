@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="abs-center ">
+    <div class="border mt-5 form">
+      <h2 class="title text-center pt-4 pb-3"><b>¿Olvidaste tu contraseña?</b></h2>
+
+        <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+          <%= render "devise/shared/error_messages", resource: resource %>
+
+          <div class="field">
+            <%= f.label :email %><br />
+            <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+          </div>
+
+          <div class="actions pt-4 pb-3">
+            <%= f.submit "Restablecer contraseña", class: 'btn-login' %>
+          </div>
+        <% end %>
+
+          <div class="text-center">
+            <%= render "devise/shared/links" %>
+          </div>
+
+      </div>
+    </div>
+  </div>
+</div>

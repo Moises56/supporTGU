@@ -1,0 +1,44 @@
+
+<tbody style="background: white;">
+</tr>
+
+    <th scope="row"><%= ticket2.pais %>-<%= ticket2.ciudad %>-<%= ticket2.ubicacion %>-<%= ticket2.id %></th>
+    <td>new123</td>
+    <td><%= ticket2.created_at %></td>
+    <td><%= ticket2.telefono %></td>
+    <%# <td><%= ticket2.estado_ticket </td> %>
+
+    <% if ticket2.state =='start'%>  
+        <td><div class="status-ticket"><%= ticket2.state %></div></td>
+    <% end %> 
+    <% if ticket2.state == 'assign_agent'%>            
+        <td><div class="status-assign_agent"><%= ticket2.state %></div></td>
+    <% end %>
+    <% if ticket2.state == 'in_progress'%>            
+        <td><div class="status-in_progress"><%= ticket2.state %></div></td>
+    <% end %>
+    <% if ticket2.state == 'solved'%>            
+        <td><div class="status-solved"><%= ticket2.state %></div></td>
+    <% end %>
+    <% if ticket2.state == 'close'%>            
+        <td><div class="status-close"><%= ticket2.state %></div></td>
+    <% end %>
+
+
+    <td><%= ticket2.nombre_usuario %></td>
+    <td><%= ticket2.email_cliente %></td>
+   <!-- <td><%= ticket2.departamento %></td> -->
+    <td><%= ticket2.asunto %></td>
+    <td><%= ticket2.mensaje %></td>
+    <td><%= ticket2.solucion %></td>
+    <td>
+        <%=link_to 'Editar2', {:action => :edit2, :id => ticket2.id}, {class: 'btn-edit btn-small'}  %>
+        <%=button_to "Eliminar", ticket2, method: :delete, confirm: "Deseas eliminar este ticket", class: 'btn-delete' %>
+    </td>
+</tr>
+</tbody>
+
+
+
+
+         

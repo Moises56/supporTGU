@@ -1,0 +1,16 @@
+
+
+<div class="container">
+  <div class="abs-center ">
+    <div class="border mt-5 form">
+        <h2 class="title text-center pt-4 pb-3"><b>EditRoles User</b></h2>
+       
+        <%= form_with(model: @user) do |form| %>
+        <%= form.collection_check_boxes :role_ids, Role.all, :id, :name %>
+        <%= @user.errors[:roles] %>
+        <%= form.button :submit, class: 'btn btn-info mt-2 mb-2' %>
+        <% end %>
+
+    </div>
+  </div>
+</div>
