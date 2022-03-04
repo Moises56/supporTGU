@@ -48,8 +48,10 @@
             
         </a>
       <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+        <% if @ticket2.state =='start'%> 
             <%=button_to 'delete', @ticket2, method: :delete, data: {confirm: "Deseas eliminar este ticket?", disable_with: "Processing..."}, class: 'btn btn-outline-danger' %>
             <%=link_to 'Edit', {:action => :edit2, :id => @ticket2.id}, html_options = {class: 'btn btn-outline-info btn-edit'} %>
+        <% end %> 
         </div>
         </div>
     </div>
@@ -59,6 +61,8 @@
     <div class="container">
         <div class="row">
            <h3 class="card-title text-center">Seguimiento del ticket</h3>
+           <span class="card-title text-center">Puedes ver el seguimiento de tu ticket</span>
+           <span class="card-title text-center">Espera a que cambie de estado</span>
             <div class="row track2">
                 <div class="card-group ">
 

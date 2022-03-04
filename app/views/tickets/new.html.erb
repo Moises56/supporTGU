@@ -1,6 +1,6 @@
 <%=form_with(model: @tickets, local: true) do |form| %>
 
-<div class="card ml-auto mr-auto text-dark bg-light mb-3 mt-5" style="max-width: 35rem;">
+<div class="card ml-auto mr-auto text-dark bg-light mb-3 mt-5" style="max-width: 45rem;">
   <div class="card-header texte-center"><h5 class="text-center txt-newT"><b>Create un Ticket</b></h5></div>
   <div class="card-body ">
         <div class="input-group input-group-sm mb-3">
@@ -25,13 +25,14 @@
         
        <div class="input-group input-group-sm mb-3">
             <%=form.label :Pais, class: 'input-group-text' %>
-            <%= form.select :pais, [['Honduras','HN'],['Mexico','MX'],['El Salvador','SV'],['Costa Rica','CR'],['Panama','PA'],['Colombia','CO']], {}, {class: "form-select"} %>
+            <%# <%= form.select :pais, [['Honduras','HN'],['Mexico','MX'],['El Salvador','SV'],['Costa Rica','CR'],['Panama','PA'],['Colombia','CO']], {}, {class: "form-select"} %>
+            <%= form.select :pais, [['Honduras','HN'],['El Salvador','SV'],['Costa Rica','CR']], {}, {class: "form-select"} %>
            
             <%=form.label :Ciudad, class: 'input-group-text' %>
-            <%= form.select :ciudad, [["Tegucigalpa","TGU"],["Sampedro Sula","SPS"],["Roatan","ROA"]], {}, {class: "form-select"}  %>
+            <%= form.select :ciudad, [["Tegucigalpa","TGU"],["San Pedro Sula","SPS"],["Roatan","ROA"]], {}, {class: "form-select"}  %>
 
             <%=form.label :Ubicacion, class: 'input-group-text' %>
-            <%= form.select :ubicacion, [["Torre Morazan","TM"],["Casa Quinchon","CQ"]], {}, {class: "form-select"}  %>
+            <%= form.select :ubicacion, [["Torre Morazan","TM"],["Casa Quinchon","CQ"],["Spirit Animal Coffe","SAC"]], {}, {class: "form-select"}  %>
         </div>
 
         <div class="input-group input-group-sm mb-3">
